@@ -28,7 +28,7 @@
       z-index: -1;
     }
 
-    /* Верхнее меню */
+    /* Меню */
     nav {
       position: fixed;
       top: 0;
@@ -36,6 +36,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       padding: 1rem;
       background: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(5px);
@@ -46,11 +47,12 @@
       color: #0ff;
       text-decoration: none;
       padding: 0.5rem 1.2rem;
-      margin: 0 0.8rem;
+      margin: 0.3rem 0.6rem;
       font-size: 1.1rem;
       text-shadow: 0 0 8px #0ff;
       transition: all 0.3s ease;
       border-radius: 8px;
+      white-space: nowrap;
     }
 
     nav a:hover {
@@ -59,7 +61,7 @@
       background: rgba(0, 255, 255, 0.15);
     }
 
-    /* Основной контент */
+    /* Контент */
     .content {
       padding-top: 6rem;
       padding-bottom: 2rem;
@@ -142,12 +144,53 @@
       text-shadow: 0 0 15px #ff00ff;
     }
 
-    /* Адаптивность */
+    /* Карточки тренажёров */
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2.5rem auto;
+      max-width: 1000px;
+    }
+
+    .card {
+      background: rgba(10, 10, 20, 0.7);
+      border: 2px solid #0ff;
+      border-radius: 16px;
+      width: 260px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px #0ff, 0 0 35px rgba(0, 255, 255, 0.6);
+      border-color: #fff;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      color: #0ff;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 8px #0ff;
+      font-weight: bold;
+    }
+
+    .card-desc {
+      font-size: 1.05rem;
+      color: #fff;
+      line-height: 1.5;
+    }
+
     @media (max-width: 768px) {
       nav a {
-        font-size: 0.95rem;
-        padding: 0.4rem 0.8rem;
-        margin: 0 0.4rem;
+        font-size: 0.9rem;
+        padding: 0.4rem 0.7rem;
+        margin: 0.2rem 0.4rem;
       }
 
       h1 {
@@ -165,25 +208,31 @@
       section {
         min-height: 60vh;
       }
+
+      .card {
+        width: 90%;
+        max-width: 300px;
+      }
     }
   </style>
 </head>
 <body>
   <canvas id="neuralCanvas"></canvas>
 
-  <!-- Меню навигации -->
+  <!-- Навигационное меню -->
   <nav>
     <a href="#about">Обо мне</a>
     <a href="#lessons">Как проходят занятия</a>
     <a href="#advantages">Преимущества</a>
+    <a href="#materials">Бесплатные материалы</a>
     <a href="#signup">Как записаться</a>
   </nav>
 
   <!-- Основной контент -->
   <div class="content">
     <section id="hero">
-      <h1>Разговорный английский для взрослых</h1>
-      <div class="subtitle">Максимум практики на занятиях 💡</div>
+      <h1>NeuroEnglish</h1>
+      <div class="subtitle">Изучай английский с нейросетевым подходом 💡</div>
     </section>
 
     <section id="about">
@@ -216,6 +265,35 @@
       </p>
     </section>
 
+    <section id="materials">
+      <h2>🎁 Бесплатные материалы</h2>
+      <p>Интерактивные тренажёры для самостоятельной практики английского:</p>
+
+      <div class="cards-container">
+        <!-- Тренажер 1 -->
+        <div class="card" onclick="window.open('https://view.genially.com/6928d05184b306f68eca543f', '_blank')">
+          <div class="card-title">Тренажер 1</div>
+          <div class="card-desc">Present Simple vs Continuous — интерактивная практика</div>
+        </div>
+
+        <!-- Тренажер 2 -->
+        <div class="card" onclick="alert('Тренажер 2 скоро будет доступен! Следите за обновлениями в Telegram.')">
+          <div class="card-title">Тренажер 2</div>
+          <div class="card-desc">Аудирование: Daily Routines + вопросы</div>
+        </div>
+
+        <!-- Тренажер 3 -->
+        <div class="card" onclick="alert('Тренажер 3 скоро будет доступен! Следите за обновлениями в Telegram.')">
+          <div class="card-title">Тренажер 3</div>
+          <div class="card-desc">Словарь: Technology & AI Vocabulary</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 2.5rem;">
+        🔹 Подпишись на <a href="https://t.me/neuro_english_tutor" style="color:#0ff; text-shadow:0 0 8px #0ff;">Telegram</a>, чтобы не пропустить новые тренажёры!
+      </p>
+    </section>
+
     <section id="signup">
       <h2>🚀 Как записаться</h2>
       <p>
@@ -229,7 +307,7 @@
     </section>
   </div>
 
-  <!-- Canvas-анимация -->
+  <!-- Анимация фона -->
   <script>
     const canvas = document.getElementById('neuralCanvas');
     const ctx = canvas.getContext('2d');
