@@ -13,7 +13,7 @@
 
     body, html {
       height: 100%;
-      overflow: hidden;
+      scroll-behavior: smooth;
       background: #000;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
@@ -28,28 +28,80 @@
       z-index: -1;
     }
 
-    .overlay {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 2rem;
+    /* Верхнее меню */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 100;
+    }
+
+    nav a {
+      color: #0ff;
+      text-decoration: none;
+      padding: 0.5rem 1.2rem;
+      margin: 0 0.8rem;
+      font-size: 1.1rem;
+      text-shadow: 0 0 8px #0ff;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+    }
+
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 15px #0ff;
+      background: rgba(0, 255, 255, 0.15);
+    }
+
+    /* Основной контент */
+    .content {
+      padding-top: 6rem;
+      padding-bottom: 2rem;
+    }
+
+    section {
+      min-height: 80vh;
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.6);
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin-bottom: 1.5rem;
     }
 
     h1 {
-      font-size: 4rem;
-      margin-bottom: 1.5rem;
+      font-size: 3.5rem;
       text-shadow: 0 0 15px #0ff, 0 0 25px #0ff;
       letter-spacing: 2px;
     }
 
+    h2 {
+      font-size: 2.2rem;
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+    }
+
     .subtitle {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       margin-bottom: 2rem;
       color: #ff00ff;
       text-shadow: 0 0 10px #ff00ff;
@@ -65,6 +117,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       text-shadow: 0 0 8px #0ff;
+      margin-top: 1rem;
     }
 
     .btn:hover {
@@ -89,12 +142,28 @@
       text-shadow: 0 0 15px #ff00ff;
     }
 
+    /* Адаптивность */
     @media (max-width: 768px) {
-      h1 {
-        font-size: 2.5rem;
+      nav a {
+        font-size: 0.95rem;
+        padding: 0.4rem 0.8rem;
+        margin: 0 0.4rem;
       }
-      .subtitle {
-        font-size: 1.2rem;
+
+      h1 {
+        font-size: 2.4rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1.05rem;
+      }
+
+      section {
+        min-height: 60vh;
       }
     }
   </style>
@@ -102,20 +171,69 @@
 <body>
   <canvas id="neuralCanvas"></canvas>
 
-  <div class="overlay">
-    <h1>NeuroEnglish</h1>
-    <div class="subtitle">Изучай английский с нейросетевым подходом 💡</div>
-    <button class="btn" onclick="window.location.href='mailto:tutor@neuroenglish.com'">Записаться на урок</button>
-    <div class="contact">
-      📧 <a href="mailto:tutor@neuroenglish.com">tutor@neuroenglish.com</a> | 📱 Telegram: @neuro_english_tutor
-    </div>
+  <!-- Меню навигации -->
+  <nav>
+    <a href="#about">Обо мне</a>
+    <a href="#lessons">Как проходят занятия</a>
+    <a href="#advantages">Преимущества</a>
+    <a href="#signup">Как записаться</a>
+  </nav>
+
+  <!-- Основной контент -->
+  <div class="content">
+    <section id="hero">
+      <h1>Разговорный английский для взрослых</h1>
+      <div class="subtitle">Максимум практики на занятиях 💡</div>
+    </section>
+
+    <section id="about">
+      <h2>👩‍🏫 Обо мне</h2>
+      <p>
+        Привет! Меня зовут Анна, я сертифицированный репетитор английского языка с 8-летним опытом.
+        Мои ученики сдают IELTS на 7.0+, поступают в зарубежные вузы и свободно общаются на английском.
+        Использую методики, вдохновлённые работой нейросетей: персонализация, повторение по спирали и контекстное обучение.
+      </p>
+    </section>
+
+    <section id="lessons">
+      <h2>📚 Как проходят занятия</h2>
+      <p>
+        Каждое занятие — это уникальный микс разговорной практики, грамматики и лексики, адаптированный под твои цели:
+        подготовка к экзаменам, работа, путешествия или просто разговорный английский.
+        Используем видео, подкасты, ИИ-инструменты и даже нейросетевые генераторы для живого языка!
+        Занятия проходят онлайн — удобно, эффективно и без стресса.
+      </p>
+    </section>
+
+    <section id="advantages">
+      <h2>✨ Преимущества</h2>
+      <p>
+        🔹 Индивидуальный план обучения<br>
+        🔹 Гибкое расписание (даже поздно вечером!)<br>
+        🔹 Акцент на разговорной речи и понимании на слух<br>
+        🔹 Бесплатный пробный урок<br>
+        🔹 Доступ к закрытому Telegram-каналу с материалами и практикой
+      </p>
+    </section>
+
+    <section id="signup">
+      <h2>🚀 Как записаться</h2>
+      <p>
+        Просто напиши мне в Telegram или на почту — и мы договоримся о бесплатном пробном уроке!
+        На нём определим твой уровень, цели и составим план обучения.
+      </p>
+      <button class="btn" onclick="window.location.href='mailto:tutor@neuroenglish.com'">Написать на почту</button>
+      <div class="contact">
+        📧 <a href="mailto:tutor@neuroenglish.com">tutor@neuroenglish.com</a> | 📱 Telegram: <a href="https://t.me/neuro_english_tutor">@neuro_english_tutor</a>
+      </div>
+    </section>
   </div>
 
+  <!-- Canvas-анимация -->
   <script>
     const canvas = document.getElementById('neuralCanvas');
     const ctx = canvas.getContext('2d');
 
-    // Адаптация под размер экрана
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -123,7 +241,6 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // Точки-нейроны
     const nodes = [];
     const colors = ['#00ffff', '#ff00ff', '#00ff00'];
     const nodeCount = 80;
@@ -141,7 +258,6 @@
       update() {
         this.x += this.vx;
         this.y += this.vy;
-
         if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
         if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
       }
@@ -156,22 +272,18 @@
       }
     }
 
-    // Инициализация нейронов
     for (let i = 0; i < nodeCount; i++) {
       nodes.push(new Node());
     }
 
-    // Анимация
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Обновление и отрисовка нейронов
       nodes.forEach(node => {
         node.update();
         node.draw();
       });
 
-      // Рисуем связи между близкими нейронами
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
